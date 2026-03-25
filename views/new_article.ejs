@@ -1,0 +1,45 @@
+<%- include("partials/hearder") %>
+
+<a href="/">← Retour à l'accueil</a>
+
+<h2>Nouvel article</h2>
+
+<form action="/new" method="post">
+
+    <label for="title">Titre</label>
+    <input type="text" id="title" name="title" required>
+
+    <label for="id_autor">Auteur</label>
+    <select id="id_autor" name="id_autor" required>
+        <option value="">-- Choisir un auteur --</option>
+        <% for (let i = 0; i < autors.length; i++) { %>
+            <option value="<%= autors[i].id %>"><%= autors[i].first_name %> <%= autors[i].last_name %></option>
+        <% } %>
+    </select>
+
+    <label for="id_category">Catégorie</label>
+    <select id="id_category" name="id_category" required>
+        <option value="">-- Choisir une catégorie --</option>
+        <% for (let i = 0; i < categories.length; i++) { %>
+            <option value="<%= categories[i].id %>"><%= categories[i].name %></option>
+        <% } %>
+    </select>
+
+    <fieldset>
+        <legend>Tags</legend>
+        <% for (let i = 0; i < tags.length; i++) { %>
+            <label>
+                <input type="checkbox" name="tags" value="<%= tags[i].id %>">
+                <%= tags[i].name %>
+            </label>
+        <% } %>
+    </fieldset>
+
+    <label for="content">Contenu</label>
+    <textarea id="content" name="content" rows="10" required></textarea>
+
+    <button type="submit">Publier</button>
+
+</form>
+
+<%- include("partials/footer") %>
