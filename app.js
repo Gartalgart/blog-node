@@ -32,7 +32,7 @@ app.get("/article/:id", async (req, res) => {
         WHERE article.id = ?
     `, [req.params.id])
 
-    if (rows.length === 0) return res.status(404).send("Article non trouvé")
+    if (rows.length === 0) return res.redirect("/")
 
     const [tags] = await pool.query(`
         SELECT tag.name, tag.slug

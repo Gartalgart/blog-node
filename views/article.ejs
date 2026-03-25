@@ -1,0 +1,38 @@
+<%- include("partials/hearder") %>
+
+<a href="/">← Retour à l'accueil</a>
+
+<h2><%= article.title %></h2>
+
+<p>
+    Par <%= article.first_name %> <%= article.last_name %>
+    | Catégorie : <%= article.category_name %>
+</p>
+<p>
+    Publié le <%= new Date(article.created_at).toLocaleDateString("fr-FR") %>
+</p>
+
+<div class="tags">
+    <% for (let i = 0; i < tags.length; i++) { %>
+        <span class="badge"><%= tags[i].name %></span>
+    <% } %>
+</div>
+
+<div class="article-content">
+    <p><%= article.content %></p>
+</div>
+
+<h3>Commentaires (<%= commentaries.length %>)</h3>
+
+<% if (commentaries.length > 0) { %>
+    <% for (let i = 0; i < commentaries.length; i++) { %>
+        <div class="comment">
+            <p><strong><%= commentaries[i].autor_com %></strong> - <%= new Date(commentaries[i].created_at).toLocaleDateString("fr-FR") %></p>
+            <p><%= commentaries[i].content %></p>
+        </div>
+    <% } %>
+<% } else { %>
+    <p>Aucun commentaire pour le moment.</p>
+<% } %>
+
+<%- include("partials/footer") %>
