@@ -1,0 +1,27 @@
+<%- include("partials/hearder") %>
+
+<h2>Les articles</h2>
+
+<% if (articles.length > 0) { %>
+    <% for (let i = 0; i < articles.length; i++) { %>
+        <div class="article-card">
+            <h3>
+                <a href="/article/<%= articles[i].id %>"><%= articles[i].title %></a>
+            </h3>
+            <p>
+                Par <%= articles[i].first_name %> <%= articles[i].last_name %>
+                | Catégorie : <%= articles[i].category_name %>
+            </p>
+            <p>
+                Publié le <%= new Date(articles[i].created_at).toLocaleDateString("fr-FR") %>
+            </p>
+            <p>
+                <%= articles[i].content.substring(0, 100) %>...
+            </p>
+        </div>
+    <% } %>
+<% } else { %>
+    <p>Aucun article pour le moment.</p>
+<% } %>
+
+<%- include("partials/footer") %>
